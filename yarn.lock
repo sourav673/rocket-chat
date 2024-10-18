@@ -134,10 +134,10 @@
     eslint-visitor-keys "^2.1.0"
     semver "^6.3.1"
 
-"@babel/eslint-plugin@^7.23.5":
-  version "7.23.5"
-  resolved "https://registry.yarnpkg.com/@babel/eslint-plugin/-/eslint-plugin-7.23.5.tgz#77d4703e9f83b81e9fc13382810372beb2f10f94"
-  integrity sha512-03+E/58Hoo/ui69gR+beFdGpplpoVK0BSIdke2iw4/Bz7eGN0ssRenNlnU4nmbkowNQOPCStKSwFr8H6DiY49g==
+"@babel/eslint-plugin@^7.25.7":
+  version "7.25.7"
+  resolved "https://registry.yarnpkg.com/@babel/eslint-plugin/-/eslint-plugin-7.25.7.tgz#0ccb07e9a71bfb0fc345100a929f9028d4660627"
+  integrity sha512-cwa16ALyUdac3n3VC3R+isKENyjLsJmFY6+cX0wuLsKlwB50Jv/xwqyH9tV8EEH0IUCAL5Y0Y1gP0HuCEDDDeQ==
   dependencies:
     eslint-rule-composer "^0.3.0"
 
