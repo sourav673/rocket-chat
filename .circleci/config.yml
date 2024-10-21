@@ -697,7 +697,8 @@ workflows:
                 - develop
       - android-build-experimental:
           requires:
-            - android-hold-build-experimental
+              - lint-testunit
+            # - android-hold-build-experimental
       # - android-internal-app-sharing-experimental:
       #     requires:
       #       - android-build-experimental
