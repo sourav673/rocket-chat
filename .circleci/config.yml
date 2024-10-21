@@ -687,14 +687,14 @@ workflows:
       #       - ios-hold-testflight-official
 
       # Android Experimental
-      - android-hold-build-experimental:
-          type: approval
-          requires:
-              - lint-testunit
-          filters:
-            branches:
-              ignore:
-                - develop
+      # - android-hold-build-experimental:
+      #     type: approval
+      #     requires:
+      #         - lint-testunit
+      #     filters:
+      #       branches:
+      #         ignore:
+      #           - develop
       - android-build-experimental:
           requires:
               - lint-testunit
