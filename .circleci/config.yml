@@ -151,70 +151,70 @@ commands:
             echo -e "hermesEnabled=true" >> ./gradle.properties
             echo -e "VERSIONCODE=$CIRCLE_BUILD_NUM" >> ./gradle.properties
 
-            if [[ $CIRCLE_JOB == "android-build-official" ]]; then
-              echo -e "APPLICATION_ID=chat.rocket.android" >> ./gradle.properties
-              echo -e "BugsnagAPIKey=$BUGSNAG_KEY_OFFICIAL" >> ./gradle.properties
-              echo $KEYSTORE_OFFICIAL_BASE64 | base64 --decode > ./app/$KEYSTORE_OFFICIAL
-              echo -e "KEYSTORE=$KEYSTORE_OFFICIAL" >> ./gradle.properties
-              echo -e "KEYSTORE_PASSWORD=$KEYSTORE_OFFICIAL_PASSWORD" >> ./gradle.properties
-              echo -e "KEY_ALIAS=$KEYSTORE_OFFICIAL_ALIAS" >> ./gradle.properties
-              echo -e "KEY_PASSWORD=$KEYSTORE_OFFICIAL_PASSWORD" >> ./gradle.properties
-            else
-              echo -e "APPLICATION_ID=chat.rocket.reactnative" >> ./gradle.properties
-              echo -e "BugsnagAPIKey=$BUGSNAG_KEY" >> ./gradle.properties
-              echo $KEYSTORE_EXPERIMENTAL_BASE64 | base64 --decode > ./app/$KEYSTORE_EXPERIMENTAL
-              echo -e "KEYSTORE=$KEYSTORE_EXPERIMENTAL" >> ./gradle.properties
-              echo -e "KEYSTORE_PASSWORD=$KEYSTORE_EXPERIMENTAL_PASSWORD" >> ./gradle.properties
-              echo -e "KEY_ALIAS=$KEYSTORE_EXPERIMENTAL_ALIAS" >> ./gradle.properties
-              echo -e "KEY_PASSWORD=$KEYSTORE_EXPERIMENTAL_PASSWORD" >> ./gradle.properties
-            fi
-          working_directory: android
+          #   if [[ $CIRCLE_JOB == "android-build-official" ]]; then
+          #     echo -e "APPLICATION_ID=chat.rocket.android" >> ./gradle.properties
+          #     echo -e "BugsnagAPIKey=$BUGSNAG_KEY_OFFICIAL" >> ./gradle.properties
+          #     echo $KEYSTORE_OFFICIAL_BASE64 | base64 --decode > ./app/$KEYSTORE_OFFICIAL
+          #     echo -e "KEYSTORE=$KEYSTORE_OFFICIAL" >> ./gradle.properties
+          #     echo -e "KEYSTORE_PASSWORD=$KEYSTORE_OFFICIAL_PASSWORD" >> ./gradle.properties
+          #     echo -e "KEY_ALIAS=$KEYSTORE_OFFICIAL_ALIAS" >> ./gradle.properties
+          #     echo -e "KEY_PASSWORD=$KEYSTORE_OFFICIAL_PASSWORD" >> ./gradle.properties
+          #   else
+          #     echo -e "APPLICATION_ID=chat.rocket.reactnative" >> ./gradle.properties
+          #     echo -e "BugsnagAPIKey=$BUGSNAG_KEY" >> ./gradle.properties
+          #     echo $KEYSTORE_EXPERIMENTAL_BASE64 | base64 --decode > ./app/$KEYSTORE_EXPERIMENTAL
+          #     echo -e "KEYSTORE=$KEYSTORE_EXPERIMENTAL" >> ./gradle.properties
+          #     echo -e "KEYSTORE_PASSWORD=$KEYSTORE_EXPERIMENTAL_PASSWORD" >> ./gradle.properties
+          #     echo -e "KEY_ALIAS=$KEYSTORE_EXPERIMENTAL_ALIAS" >> ./gradle.properties
+          #     echo -e "KEY_PASSWORD=$KEYSTORE_EXPERIMENTAL_PASSWORD" >> ./gradle.properties
+          #   fi
+          # working_directory: android
 
-      - run:
-          name: Set Google Services
-          command: |
-            if [[ $GOOGLE_SERVICES_ANDROID ]]; then
-              echo $GOOGLE_SERVICES_ANDROID | base64 --decode > google-services.json
-            fi
-          working_directory: android/app
+      # - run:
+      #     name: Set Google Services
+      #     command: |
+      #       if [[ $GOOGLE_SERVICES_ANDROID ]]; then
+      #         echo $GOOGLE_SERVICES_ANDROID | base64 --decode > google-services.json
+      #       fi
+      #     working_directory: android/app
 
-      - run:
-          name: Build App
-          command: |
-            if [[ $CIRCLE_JOB == "android-build-official" ]]; then
-              ./gradlew bundleOfficialPlayRelease
-            fi
-            if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
-              ./gradlew bundleExperimentalPlayRelease
-            fi
-            if [[ ! $GOOGLE_SERVICES_ANDROID ]]; then
-              ./gradlew assembleExperimentalPlayDebug
-            fi
-          working_directory: android
+      # - run:
+      #     name: Build App
+      #     command: |
+      #       if [[ $CIRCLE_JOB == "android-build-official" ]]; then
+      #         ./gradlew bundleOfficialPlayRelease
+      #       fi
+      #       if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
+      #         ./gradlew bundleExperimentalPlayRelease
+      #       fi
+      #       if [[ ! $GOOGLE_SERVICES_ANDROID ]]; then
+      #         ./gradlew assembleExperimentalPlayDebug
+      #       fi
+      #     working_directory: android
 
-      - run:
-          name: Upload sourcemaps/NDK symbols to Bugsnag
-          command: |
-            if [[ $CIRCLE_JOB == "android-build-official" ]]; then
-              yarn bugsnag:upload-android --variant officialPlayRelease
-              yarn bugsnag-cli upload android-aab android/app/build/outputs/bundle/officialPlayRelease/app-official-play-release.aab
-            fi
-            if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
-              yarn bugsnag:upload-android --variant experimentalPlayRelease
-              yarn bugsnag-cli upload android-aab android/app/build/outputs/bundle/experimentalPlayRelease/app-experimental-play-release.aab
-            fi
+      # - run:
+      #     name: Upload sourcemaps/NDK symbols to Bugsnag
+      #     command: |
+      #       if [[ $CIRCLE_JOB == "android-build-official" ]]; then
+      #         yarn bugsnag:upload-android --variant officialPlayRelease
+      #         yarn bugsnag-cli upload android-aab android/app/build/outputs/bundle/officialPlayRelease/app-official-play-release.aab
+      #       fi
+      #       if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
+      #         yarn bugsnag:upload-android --variant experimentalPlayRelease
+      #         yarn bugsnag-cli upload android-aab android/app/build/outputs/bundle/experimentalPlayRelease/app-experimental-play-release.aab
+      #       fi
 
-      - store_artifacts:
-          path: android/app/build/outputs
+      # - store_artifacts:
+      #     path: android/app/build/outputs
 
-      - save_cache: *save-npm-cache-linux
+      # - save_cache: *save-npm-cache-linux
 
-      - save_cache: *save-gradle-cache
+      # - save_cache: *save-gradle-cache
 
-      - persist_to_workspace:
-          root: .
-          paths:
-            - android/app/build/outputs
+      # - persist_to_workspace:
+      #     root: .
+      #     paths:
+      #       - android/app/build/outputs
 
   # ios-build:
   #   description: "Build iOS app"
