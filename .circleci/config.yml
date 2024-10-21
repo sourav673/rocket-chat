@@ -156,7 +156,7 @@ commands:
             echo -e "KEYSTORE=$KEYSTORE_EXPERIMENTAL" >> ./gradle.properties
             echo -e "KEYSTORE_PASSWORD=123" >> ./gradle.properties
             echo -e "KEY_ALIAS=$KEYSTORE_EXPERIMENTAL_ALIAS" >> ./gradle.properties
-            echo -e "KEY_PASSWORD=$KEYSTORE_EXPERIMENTAL_PASSWORD" >> ./gradle.properties
+            echo -e "KEY_PASSWORD=123" >> ./gradle.properties
             
 
           #   if [[ $CIRCLE_JOB == "android-build-official" ]]; then
