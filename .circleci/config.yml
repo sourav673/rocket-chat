@@ -187,9 +187,7 @@ commands:
             if [[ $CIRCLE_JOB == "android-build-official" ]]; then
               ./gradlew bundleOfficialPlayRelease
             fi
-            if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
-              ./gradlew bundleExperimentalPlayRelease
-            fi
+            
             if [[ ! $GOOGLE_SERVICES_ANDROID ]]; then
               ./gradlew assembleExperimentalPlayDebug
             fi
