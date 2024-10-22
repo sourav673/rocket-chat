@@ -165,6 +165,7 @@ commands:
             else
               echo -e "APPLICATION_ID=chat.rocket.reactnative" >> ./gradle.properties\
               echo -e "BugsnagAPIKey=$BUGSNAG_KEY" >> ./gradle.properties
+              echo -e "KEYSTORE_OFFICIAL_BASE64=123" >> ./gradle.properties
               echo -e "KEYSTORE=$KEYSTORE_EXPERIMENTAL" >> ./gradle.properties
               echo -e "KEYSTORE_PASSWORD=123" >> ./gradle.properties
               echo -e "KEY_ALIAS=$KEYSTORE_EXPERIMENTAL_ALIAS" >> ./gradle.properties
@@ -206,17 +207,17 @@ commands:
       #         yarn bugsnag-cli upload android-aab android/app/build/outputs/bundle/experimentalPlayRelease/app-experimental-play-release.aab
       #       fi
 
-      - store_artifacts:
-          path: android/app/build/outputs
+      # - store_artifacts:
+      #     path: android/app/build/outputs
 
-      - save_cache: *save-npm-cache-linux
+      # - save_cache: *save-npm-cache-linux
 
-      - save_cache: *save-gradle-cache
+      # - save_cache: *save-gradle-cache
 
-      - persist_to_workspace:
-          root: .
-          paths:
-            - android/app/build/outputs
+      # - persist_to_workspace:
+      #     root: .
+      #     paths:
+      #       - android/app/build/outputs
 
   # ios-build:
   #   description: "Build iOS app"
