@@ -173,12 +173,12 @@ commands:
             fi
           # working_directory: android
 
-      # - run:
-      #     name: Set Google Services
-      #     command: |
-      #       if [[ $GOOGLE_SERVICES_ANDROID ]]; then
-      #         echo $GOOGLE_SERVICES_ANDROID | base64 --decode > google-services.json
-      #       fi
+      - run:
+          name: Set Google Services
+          command: |
+            if [[ $GOOGLE_SERVICES_ANDROID ]]; then
+              echo $GOOGLE_SERVICES_ANDROID | base64 --decode > google-services.json
+            fi
       #     working_directory: android/app
 
       # - run:
