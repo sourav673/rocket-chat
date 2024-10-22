@@ -181,12 +181,19 @@ commands:
       #       fi
       #     working_directory: android/app
 
-      - run:
-          name: Build App
-          command: |
-            ./gradlew bundleExperimentalPlayRelease
-           
-          working_directory: android
+      # - run:
+      #     name: Build App
+      #     command: |
+      #       if [[ $CIRCLE_JOB == "android-build-official" ]]; then
+      #         ./gradlew bundleOfficialPlayRelease
+      #       fi
+      #       if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
+      #         ./gradlew bundleExperimentalPlayRelease
+      #       fi
+      #       if [[ ! $GOOGLE_SERVICES_ANDROID ]]; then
+      #         ./gradlew assembleExperimentalPlayDebug
+      #       fi
+      #     working_directory: android
 
       # - run:
       #     name: Upload sourcemaps/NDK symbols to Bugsnag
@@ -200,12 +207,12 @@ commands:
       #         yarn bugsnag-cli upload android-aab android/app/build/outputs/bundle/experimentalPlayRelease/app-experimental-play-release.aab
       #       fi
 
-      # - store_artifacts:
-      #     path: android/app/build/outputs
+      - store_artifacts:
+          path: android/app/build/outputs
 
-      # - save_cache: *save-npm-cache-linux
+      - save_cache: *save-npm-cache-linux
 
-      # - save_cache: *save-gradle-cache
+      - save_cache: *save-gradle-cache
 
       # - persist_to_workspace:
       #     root: .
