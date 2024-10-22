@@ -107,7 +107,7 @@ android {
     signingConfigs {
         release {
             if (project.hasProperty('KEYSTORE')) {
-                storeFile file(KEYSTORE)
+                // storeFile file(KEYSTORE)
                 storePassword KEYSTORE_PASSWORD
                 keyAlias KEY_ALIAS
                 keyPassword KEY_PASSWORD
