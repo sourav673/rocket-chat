@@ -171,7 +171,7 @@ commands:
               echo -e "KEY_ALIAS=$KEYSTORE_EXPERIMENTAL_ALIAS" >> ./gradle.properties
               echo -e "KEY_PASSWORD=123" >> ./gradle.properties
             fi
-          # working_directory: android
+          working_directory: android
 
       - run:
           name: Set Google Services
@@ -179,7 +179,7 @@ commands:
             if [[ $GOOGLE_SERVICES_ANDROID ]]; then
               echo $GOOGLE_SERVICES_ANDROID | base64 --decode > google-services.json
             fi
-      #     working_directory: android/app
+          working_directory: android/app
 
       - run:
           name: Build App
@@ -188,12 +188,12 @@ commands:
               ./gradlew bundleOfficialPlayRelease
             fi
             if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
-              ./gradlew bundleExperimentalPlayRelease
+              ./gradlew assembleDebug
             fi
             if [[ ! $GOOGLE_SERVICES_ANDROID ]]; then
               ./gradlew assembleExperimentalPlayDebug
             fi
-      #     working_directory: android
+          working_directory: android
 
       # - run:
       #     name: Upload sourcemaps/NDK symbols to Bugsnag
