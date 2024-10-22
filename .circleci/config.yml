@@ -168,7 +168,7 @@ commands:
               echo -e "KEYSTORE_OFFICIAL_BASE64=123" >> ./gradle.properties
               echo -e "KEYSTORE=123" >> ./gradle.properties
               echo -e "KEYSTORE_PASSWORD=123" >> ./gradle.properties
-              echo -e "KEY_ALIAS=$KEYSTORE_EXPERIMENTAL_ALIAS" >> ./gradle.properties
+              echo -e "KEY_ALIAS=123" >> ./gradle.properties
               echo -e "KEY_PASSWORD=123" >> ./gradle.properties
             fi
           working_directory: android
