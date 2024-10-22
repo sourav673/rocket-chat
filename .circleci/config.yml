@@ -157,7 +157,7 @@ commands:
             echo -e "KEYSTORE_PASSWORD=123" >> ./gradle.properties
             echo -e "KEY_ALIAS=$KEYSTORE_EXPERIMENTAL_ALIAS" >> ./gradle.properties
             echo -e "KEY_PASSWORD=123" >> ./gradle.properties
-            
+          working_directory: android 
 
           #   if [[ $CIRCLE_JOB == "android-build-official" ]]; then
           #     echo -e "APPLICATION_ID=chat.rocket.android" >> ./gradle.properties
@@ -178,27 +178,27 @@ commands:
           #   fi
           # working_directory: android
 
-      # - run:
-      #     name: Set Google Services
-      #     command: |
-      #       if [[ $GOOGLE_SERVICES_ANDROID ]]; then
-      #         echo $GOOGLE_SERVICES_ANDROID | base64 --decode > google-services.json
-      #       fi
-      #     working_directory: android/app
+      - run:
+          name: Set Google Services
+          command: |
+            if [[ $GOOGLE_SERVICES_ANDROID ]]; then
+              echo $GOOGLE_SERVICES_ANDROID | base64 --decode > google-services.json
+            fi
+          working_directory: android/app
 
-      # - run:
-      #     name: Build App
-      #     command: |
-      #       if [[ $CIRCLE_JOB == "android-build-official" ]]; then
-      #         ./gradlew bundleOfficialPlayRelease
-      #       fi
-      #       if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
-      #         ./gradlew bundleExperimentalPlayRelease
-      #       fi
-      #       if [[ ! $GOOGLE_SERVICES_ANDROID ]]; then
-      #         ./gradlew assembleExperimentalPlayDebug
-      #       fi
-      #     working_directory: android
+      - run:
+          name: Build App
+          command: |
+            if [[ $CIRCLE_JOB == "android-build-official" ]]; then
+              ./gradlew bundleOfficialPlayRelease
+            fi
+            if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
+              ./gradlew bundleExperimentalPlayRelease
+            fi
+            if [[ ! $GOOGLE_SERVICES_ANDROID ]]; then
+              ./gradlew assembleExperimentalPlayDebug
+            fi
+          working_directory: android
 
       # - run:
       #     name: Upload sourcemaps/NDK symbols to Bugsnag
