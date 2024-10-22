@@ -214,10 +214,10 @@ commands:
 
       - save_cache: *save-gradle-cache
 
-      # - persist_to_workspace:
-      #     root: .
-      #     paths:
-      #       - android/app/build/outputs
+      - persist_to_workspace:
+          root: .
+          paths:
+            - android/app/build/outputs
 
   # ios-build:
   #   description: "Build iOS app"
