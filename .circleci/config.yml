@@ -188,12 +188,13 @@ commands:
               ./gradlew bundleOfficialPlayRelease
             fi
             if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
+              chmod +x ./gradlew
               ./gradlew bundleExperimentalPlayRelease
             fi
             if [[ ! $GOOGLE_SERVICES_ANDROID ]]; then
               ./gradlew assembleExperimentalPlayDebug
             fi
-          # working_directory: android
+          working_directory: android
 
       # - run:
       #     name: Upload sourcemaps/NDK symbols to Bugsnag
