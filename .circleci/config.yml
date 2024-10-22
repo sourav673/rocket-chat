@@ -184,13 +184,8 @@ commands:
       - run:
           name: Build App
           command: |
-            if [[ $CIRCLE_JOB == "android-build-official" ]]; then
-              ./gradlew bundleOfficialPlayRelease
-            fi
-            
-            if [[ ! $GOOGLE_SERVICES_ANDROID ]]; then
-              ./gradlew assembleExperimentalPlayDebug
-            fi
+            ./gradlew bundleExperimentalPlayRelease
+           
           working_directory: android
 
       # - run:
