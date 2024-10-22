@@ -164,22 +164,22 @@ commands:
               echo -e "KEY_PASSWORD=$KEYSTORE_OFFICIAL_PASSWORD" >> ./gradle.properties
             else
               echo -e "APPLICATION_ID=chat.rocket.reactnative" >> ./gradle.properties\
-              echo -e "BugsnagAPIKey=$BUGSNAG_KEY" >> ./gradle.properties
-              echo -e "KEYSTORE_OFFICIAL_BASE64=123" >> ./gradle.properties
-              echo -e "KEYSTORE=123" >> ./gradle.properties
-              echo -e "KEYSTORE_PASSWORD=123" >> ./gradle.properties
-              echo -e "KEY_ALIAS=123" >> ./gradle.properties
-              echo -e "KEY_PASSWORD=123" >> ./gradle.properties
+              echo -e "BugsnagAPIKey=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
+              echo -e "KEYSTORE_OFFICIAL_BASE64=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
+              echo -e "KEYSTORE=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
+              echo -e "KEYSTORE_PASSWORD=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
+              echo -e "KEY_ALIAS=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
+              echo -e "KEY_PASSWORD=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
             fi
           working_directory: android
 
-      - run:
-          name: Set Google Services
-          command: |
-            if [[ $GOOGLE_SERVICES_ANDROID ]]; then
-              echo $GOOGLE_SERVICES_ANDROID | base64 --decode > google-services.json
-            fi
-          working_directory: android/app
+      # - run:
+      #     name: Set Google Services
+      #     command: |
+      #       if [[ $GOOGLE_SERVICES_ANDROID ]]; then
+      #         echo $GOOGLE_SERVICES_ANDROID | base64 --decode > google-services.json
+      #       fi
+      #     working_directory: android/app
 
       - run:
           name: Build App
