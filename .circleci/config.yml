@@ -193,7 +193,7 @@ commands:
             if [[ ! $GOOGLE_SERVICES_ANDROID ]]; then
               ./gradlew assembleExperimentalPlayDebug
             fi
-          working_directory: android
+          # working_directory: android
 
       # - run:
       #     name: Upload sourcemaps/NDK symbols to Bugsnag
