@@ -499,11 +499,11 @@ jobs:
             echo -e "KEY_ALIAS=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
             echo -e "KEY_PASSWORD=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
           working_directory: android
-      # - run:
-      #     name: Build Android
-      #     command: |
-      #       export RUNNING_E2E_TESTS=true
-      #       yarn e2e:android-build
+      - run:
+          name: Build Android
+          command: |
+            export RUNNING_E2E_TESTS=true
+            yarn e2e:android-build
       # - save_cache: *save-gradle-cache
       # - store_artifacts:
       #     path: android/app/build/outputs/apk/experimentalPlay/release/app-experimental-play-release.apk
