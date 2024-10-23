@@ -510,7 +510,7 @@ jobs:
       - store_artifacts:
           path: android/app/build/outputs/apk/androidTest/experimentalPlay/release/app-experimental-play-release-androidTest.apk
       - persist_to_workspace:
-          root: /home/circleci/repo
+          root: .
           paths:
             - android/app/build/outputs/apk/
 
