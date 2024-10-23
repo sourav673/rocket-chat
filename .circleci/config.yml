@@ -188,7 +188,7 @@ commands:
               ./gradlew bundleOfficialPlayRelease
             fi
             if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
-              chmod +x ./gradlew
+              
               ./gradlew assembleExperimentalPlayDebug
             fi
             if [[ ! $GOOGLE_SERVICES_ANDROID ]]; then
@@ -492,7 +492,7 @@ jobs:
             echo -e "hermesEnabled=true" >> ./gradle.properties
             echo -e "VERSIONCODE=$CIRCLE_BUILD_NUM" >> ./gradle.properties
             echo -e "APPLICATION_ID=chat.rocket.reactnative" >> ./gradle.properties
-            echo -e "BugsnagAPIKey=$BUGSNAG_KEY" >> ./gradle.properties
+            echo -e "BugsnagAPIKey=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
             echo -e "KEYSTORE_OFFICIAL_BASE64=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
             echo -e "KEYSTORE=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
             echo -e "KEYSTORE_PASSWORD=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
