@@ -184,8 +184,16 @@ commands:
       - run:
           name: Build App
           command: |
-            chmod +x ./gradlew
-            ./gradlew bundleExperimentalPlayRelease
+            if [[ $CIRCLE_JOB == "android-build-official" ]]; then
+              ./gradlew bundleOfficialPlayRelease
+            fi
+            if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
+              chmod +x ./gradlew
+              ./gradlew assembleExperimentalPlayDebug
+            fi
+            if [[ ! $GOOGLE_SERVICES_ANDROID ]]; then
+              ./gradlew assembleExperimentalPlayDebug
+            fi
             
           working_directory: android
 
