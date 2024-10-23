@@ -189,7 +189,7 @@ commands:
             fi
             if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
               chmod +x ./gradlew
-              ./gradlew assembleExperimentalPlayDebug
+              ./gradlew bundleExperimentalPlayRelease
             fi
             if [[ ! $GOOGLE_SERVICES_ANDROID ]]; then
               ./gradlew assembleExperimentalPlayDebug
@@ -216,10 +216,10 @@ commands:
 
       - save_cache: *save-gradle-cache
 
-      # - persist_to_workspace:
-      #     root: .
-      #     paths:
-      #       - android/app/build/outputs
+      - persist_to_workspace:
+          root: .
+          paths:
+            - android/app/build/outputs
 
   # ios-build:
   #   description: "Build iOS app"
