@@ -197,17 +197,17 @@ commands:
             
           working_directory: android
 
-      # - run:
-      #     name: Upload sourcemaps/NDK symbols to Bugsnag
-      #     command: |
-      #       if [[ $CIRCLE_JOB == "android-build-official" ]]; then
-      #         yarn bugsnag:upload-android --variant officialPlayRelease
-      #         yarn bugsnag-cli upload android-aab android/app/build/outputs/bundle/officialPlayRelease/app-official-play-release.aab
-      #       fi
-      #       if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
-      #         yarn bugsnag:upload-android --variant experimentalPlayRelease
-      #         yarn bugsnag-cli upload android-aab android/app/build/outputs/bundle/experimentalPlayRelease/app-experimental-play-release.aab
-      #       fi
+      - run:
+          name: Upload sourcemaps/NDK symbols to Bugsnag
+          command: |
+            if [[ $CIRCLE_JOB == "android-build-official" ]]; then
+              yarn bugsnag:upload-android --variant officialPlayRelease
+              yarn bugsnag-cli upload android-aab android/app/build/outputs/bundle/officialPlayRelease/app-official-play-release.aab
+            fi
+            if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
+              yarn bugsnag:upload-android --variant experimentalPlayRelease
+              yarn bugsnag-cli upload android-aab android/app/build/outputs/bundle/experimentalPlayRelease/app-experimental-play-release.aab
+            fi
 
       - store_artifacts:
           path: android/app/build/outputs
@@ -510,9 +510,9 @@ jobs:
       - store_artifacts:
           path: android/app/build/outputs/apk/androidTest/experimentalPlay/release/app-experimental-play-release-androidTest.apk
       - persist_to_workspace:
-          root: .
+          root: /home/circleci/repo
           paths:
-            - android/app/build/outputs
+            - android/app/build/outputs/apk/
 
   # e2e-test-android:
   #   <<: *defaults
@@ -647,17 +647,17 @@ workflows:
       - lint-testunit
 
       # E2E tests
-      - e2e-hold:
-          type: approval
+      # - e2e-hold:
+      #     type: approval
       # - e2e-build-ios:
       #     requires:
       #       - e2e-hold
       # - e2e-test-ios:
       #     requires:
       #       - e2e-build-ios
-      - e2e-build-android:
-          requires:
-            - e2e-hold
+      # - e2e-build-android:
+      #     requires:
+      #       - e2e-hold
       # - e2e-test-android:
       #     requires:
       #       - e2e-build-android
