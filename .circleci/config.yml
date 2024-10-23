@@ -504,15 +504,15 @@ jobs:
           command: |
             export RUNNING_E2E_TESTS=true
             yarn e2e:android-build
-      # - save_cache: *save-gradle-cache
-      # - store_artifacts:
-      #     path: android/app/build/outputs/apk/experimentalPlay/release/app-experimental-play-release.apk
-      # - store_artifacts:
-      #     path: android/app/build/outputs/apk/androidTest/experimentalPlay/release/app-experimental-play-release-androidTest.apk
-      # - persist_to_workspace:
-      #     root: /home/circleci/repo
-      #     paths:
-      #       - android/app/build/outputs/apk/
+      - save_cache: *save-gradle-cache
+      - store_artifacts:
+          path: android/app/build/outputs/apk/experimentalPlay/release/app-experimental-play-release.apk
+      - store_artifacts:
+          path: android/app/build/outputs/apk/androidTest/experimentalPlay/release/app-experimental-play-release-androidTest.apk
+      - persist_to_workspace:
+          root: /home/circleci/repo
+          paths:
+            - android/app/build/outputs/apk/
 
   # e2e-test-android:
   #   <<: *defaults
