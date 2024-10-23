@@ -437,13 +437,13 @@ jobs:
   #   steps:
   #     - android-build
 
-  # android-internal-app-sharing-experimental:
-  #   <<: *defaults
-  #   docker:
-  #     - image: cimg/android:2023.11-node
+  android-internal-app-sharing-experimental:
+    <<: *defaults
+    docker:
+      - image: cimg/android:2023.11-node
 
-  #   steps:
-  #     - upload-to-internal-app-sharing
+    steps:
+      - upload-to-internal-app-sharing
 
   # android-google-play-beta-experimental:
   #   <<: *defaults
@@ -703,9 +703,9 @@ workflows:
       - android-build-experimental:
           requires:
             - android-hold-build-experimental
-      # - android-internal-app-sharing-experimental:
-      #     requires:
-      #       - android-build-experimental
+      - android-internal-app-sharing-experimental:
+          requires:
+            - android-build-experimental
       # - android-hold-google-play-beta-experimental:
       #     type: approval
       #     requires:
