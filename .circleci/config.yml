@@ -189,7 +189,7 @@ commands:
             fi
             if [[ $CIRCLE_JOB == "android-build-experimental" || "android-automatic-build-experimental" ]]; then
               chmod +x ./gradlew
-              ./gradlew bundleExperimentalPlayRelease
+              ./gradlew assembleExperimentalPlayDebug
             fi
             if [[ ! $GOOGLE_SERVICES_ANDROID ]]; then
               ./gradlew assembleExperimentalPlayDebug
