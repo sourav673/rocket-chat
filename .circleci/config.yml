@@ -163,8 +163,7 @@ commands:
               echo -e "KEY_ALIAS=$KEYSTORE_OFFICIAL_ALIAS" >> ./gradle.properties
               echo -e "KEY_PASSWORD=$KEYSTORE_OFFICIAL_PASSWORD" >> ./gradle.properties
             else
-              echo -e "APPLICATION_ID=chat.rocket.reactnative" >> ./gradle.properties\
-              echo -e "BugsnagAPIKey=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
+              
               echo -e "KEYSTORE_OFFICIAL_BASE64=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
               echo -e "KEYSTORE=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
               echo -e "KEYSTORE_PASSWORD=AIzaSyAWwowhAfACHBw3YxmDOXY3QyakgjhJLqc" >> ./gradle.properties
