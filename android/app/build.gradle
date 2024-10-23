@@ -96,7 +96,7 @@ android {
         versionName "4.54.0"
         vectorDrawables.useSupportLibrary = true
         if (!isFoss) {
-            // manifestPlaceholders = [BugsnagAPIKey: BugsnagAPIKey as String]
+            manifestPlaceholders = [BugsnagAPIKey: BugsnagAPIKey as String]
             missingDimensionStrategy "RNNotifications.reactNativeVersion", "reactNative60" // See note below!
         }
         resValue "string", "rn_config_reader_custom_package", "chat.rocket.reactnative"
