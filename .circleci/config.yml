@@ -516,10 +516,10 @@ jobs:
 
   e2e-test-android:
     <<: *defaults
-    executor:
-      name: android/android-machine
-      resource-class: xlarge
-      tag: 2024.01.1
+    # executor:
+    #   name: android/android-machine
+    #   resource-class: xlarge
+    #   tag: 2024.01.1
     parallelism: 4
     steps:
       - checkout
