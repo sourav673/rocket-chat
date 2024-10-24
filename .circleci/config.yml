@@ -514,46 +514,46 @@ jobs:
       #     paths:
       #       - android/app/build/outputs/apk/
 
-  # e2e-test-android:
-  #   <<: *defaults
-  #   executor:
-  #     name: android/android-machine
-  #     resource-class: xlarge
-  #     tag: 2024.01.1
-  #   parallelism: 4
-  #   steps:
-  #     - checkout
-  #     - attach_workspace:
-  #         at: /home/circleci/repo
-  #     - restore_cache: *restore-npm-cache-linux
-  #     - run: *install-npm-modules
-  #     - save_cache: *save-npm-cache-linux
-  #     - run: mkdir ~/junit
-  #     - create-e2e-account-file
-  #     - android/create-avd:
-  #         avd-name: Pixel_API_31_AOSP
-  #         install: true
-  #         system-image: system-images;android-31;default;x86_64
-  #     - run:
-  #         name: Setup emulator
-  #         command: |
-  #           echo "hw.lcd.density = 440" >> ~/.android/avd/Pixel_API_31_AOSP.avd/config.ini
-  #           echo "hw.lcd.height = 2280" >> ~/.android/avd/Pixel_API_31_AOSP.avd/config.ini
-  #           echo "hw.lcd.width = 1080" >> ~/.android/avd/Pixel_API_31_AOSP.avd/config.ini
-  #     - run:
-  #         name: Run Detox Tests
-  #         command: |
-  #           TEST=$(circleci tests glob "e2e/tests/**/*.ts" | circleci tests split --split-by=timings)
-  #           yarn e2e:android-test $TEST
-  #     - store_artifacts:
-  #         path: artifacts
-  #     - run:
-  #         command: cp junit.xml ~/junit/
-  #         when: always
-  #     - store_test_results:
-  #         path: ~/junit
-  #     - store_artifacts:
-  #         path: ~/junit
+  e2e-test-android:
+    <<: *defaults
+    executor:
+      name: android/android-machine
+      resource-class: xlarge
+      tag: 2024.01.1
+    parallelism: 4
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /home/circleci/repo
+      - restore_cache: *restore-npm-cache-linux
+      - run: *install-npm-modules
+      - save_cache: *save-npm-cache-linux
+      - run: mkdir ~/junit
+      - create-e2e-account-file
+      - android/create-avd:
+          avd-name: Pixel_API_31_AOSP
+          install: true
+          system-image: system-images;android-31;default;x86_64
+      - run:
+          name: Setup emulator
+          command: |
+            echo "hw.lcd.density = 440" >> ~/.android/avd/Pixel_API_31_AOSP.avd/config.ini
+            echo "hw.lcd.height = 2280" >> ~/.android/avd/Pixel_API_31_AOSP.avd/config.ini
+            echo "hw.lcd.width = 1080" >> ~/.android/avd/Pixel_API_31_AOSP.avd/config.ini
+      - run:
+          name: Run Detox Tests
+          command: |
+            TEST=$(circleci tests glob "e2e/tests/**/*.ts" | circleci tests split --split-by=timings)
+            yarn e2e:android-test $TEST
+      - store_artifacts:
+          path: artifacts
+      - run:
+          command: cp junit.xml ~/junit/
+          when: always
+      - store_test_results:
+          path: ~/junit
+      - store_artifacts:
+          path: ~/junit
 
   # iOS builds
   # ios-build-experimental:
@@ -658,9 +658,9 @@ workflows:
       - e2e-build-android:
           requires:
             - e2e-hold
-      # - e2e-test-android:
-      #     requires:
-      #       - e2e-build-android
+      - e2e-test-android:
+          requires:
+            - e2e-build-android
 
       # iOS Experimental
       
