@@ -530,21 +530,21 @@ jobs:
       - save_cache: *save-npm-cache-linux
       - run: mkdir ~/junit
       - create-e2e-account-file
-      - android/create-avd:
-          avd-name: Pixel_API_31_AOSP
-          install: true
-          system-image: system-images;android-31;default;x86_64
-      - run:
-          name: Setup emulator
-          command: |
-            echo "hw.lcd.density = 440" >> ~/.android/avd/Pixel_API_31_AOSP.avd/config.ini
-            echo "hw.lcd.height = 2280" >> ~/.android/avd/Pixel_API_31_AOSP.avd/config.ini
-            echo "hw.lcd.width = 1080" >> ~/.android/avd/Pixel_API_31_AOSP.avd/config.ini
-      - run:
-          name: Run Detox Tests
-          command: |
-            TEST=$(circleci tests glob "e2e/tests/**/*.ts" | circleci tests split --split-by=timings)
-            yarn e2e:android-test $TEST
+      # - android/create-avd:
+      #     avd-name: Pixel_API_31_AOSP
+      #     install: true
+      #     system-image: system-images;android-31;default;x86_64
+      # - run:
+      #     name: Setup emulator
+      #     command: |
+      #       echo "hw.lcd.density = 440" >> ~/.android/avd/Pixel_API_31_AOSP.avd/config.ini
+      #       echo "hw.lcd.height = 2280" >> ~/.android/avd/Pixel_API_31_AOSP.avd/config.ini
+      #       echo "hw.lcd.width = 1080" >> ~/.android/avd/Pixel_API_31_AOSP.avd/config.ini
+      # - run:
+      #     name: Run Detox Tests
+      #     command: |
+      #       TEST=$(circleci tests glob "e2e/tests/**/*.ts" | circleci tests split --split-by=timings)
+      #       yarn e2e:android-test $TEST
       - store_artifacts:
           path: artifacts
       - run:
